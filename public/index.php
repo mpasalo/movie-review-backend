@@ -44,7 +44,6 @@ require __DIR__.'/../vendor/autoload.php';
 |
 */
 
-header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: DELETE');
 header('Access-Control-Allow-Headers: Content-Type');
 header('Access-Control-Max-Age: 86400');
