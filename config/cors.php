@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => ['https://epic-clarke-e6440f.netlify.app'],
 
     'allowed_origins_patterns' => [],
 
