@@ -44,11 +44,6 @@ require __DIR__.'/../vendor/autoload.php';
 |
 */
 
-header('Access-Control-Allow-Methods: DELETE');
-header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Authorization');
-header('Access-Control-Max-Age: 86400');
-header('Content-Type: application/json');
-
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
 $kernel = $app->make(Kernel::class);
