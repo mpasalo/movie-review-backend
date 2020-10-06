@@ -41,6 +41,6 @@ class ReviewController extends Controller
     public function destroy(Movie $movie)
     {
         $review = Review::find($movie->review->id);
-        return $review->delete();
+        $review->delete();
     }
 }
