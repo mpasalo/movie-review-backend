@@ -19,6 +19,7 @@ class Review extends Model
      */
     protected $casts = [
         'id'               => 'integer',
+        'user_id'         => 'integer',
         'movie_id'         => 'integer',
         'rating'           => 'integer',
         'description'      => 'string',
@@ -27,5 +28,10 @@ class Review extends Model
     public function movie(): BelongsTo
     {
         return $this->belongsTo(Movie::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }
