@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
@@ -28,3 +30,6 @@ Route::get('reviews/{movie}', [ReviewController::class, 'show'])->name('reviews.
 Route::post('reviews/{movie}/rating', [ReviewController::class, 'storeRating'])->name('review.store.rating');
 Route::post('reviews/{movie}/description', [ReviewController::class, 'storeDescription'])->name('review.store.description');
 Route::delete('reviews/{movie}', [ReviewController::class, 'destroy'])->name('review.destroy');
+
+Route::post('login', [LoginController::class, 'login'])->name('login');
+Route::post('logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth:sanctum');
