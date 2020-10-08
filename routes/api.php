@@ -32,5 +32,6 @@ Route::post('reviews/{movie}/description', [ReviewController::class, 'storeDescr
 Route::delete('reviews/{movie}', [ReviewController::class, 'destroy'])->name('review.destroy');
 
 Route::post('login', [LoginController::class, 'login'])->name('login');
-Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth:sanctum');
+
+Route::post('create', [UserController::class, 'create'])->name('user.create');
