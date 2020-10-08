@@ -34,4 +34,4 @@ Route::delete('reviews/{movie}', [ReviewController::class, 'destroy'])->name('re
 Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth:sanctum');
 
-Route::post('create', [UserController::class, 'create'])->name('user.create');
+Route::post('user/create', [UserController::class, 'create'])->name('user.create');
