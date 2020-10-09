@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Auth;
 
 class Movie extends Model
 {
@@ -31,6 +32,6 @@ class Movie extends Model
 
     public function hasReview(): bool
     {
-        return $this->review()->exists();
+        return $this->review()->whereUserId(Auth::user()->id)->exists();
     }
 }

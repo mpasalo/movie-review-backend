@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MovieController extends Controller
 {
@@ -20,8 +21,6 @@ class MovieController extends Controller
         $filteredMovies = $movies->filter(function ($value, $key) {
             return $value->hasReview();
         })->values();
-
-   
 
         return $filteredMovies;
     }
