@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Movie;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Database\Seeder;
 
 class MoviesTableSeeder extends Seeder
@@ -14,36 +16,42 @@ class MoviesTableSeeder extends Seeder
      */
     public function run()
     {
+        $client = new Client();
+        $firstMovie = $client->request('GET', "http://www.omdbapi.com/?apikey=a9257456&t=dark_knight");
+        $secondMovie = $client->request('GET', 'http://www.omdbapi.com/?apikey=a9257456&t=goodfellas');
+        $thirdMovie = $client->request('GET', 'http://www.omdbapi.com/?apikey=a9257456&t=127_hours');
+        $fourthMovie = $client->request('GET', 'http://www.omdbapi.com/?apikey=a9257456&t=wolf_of_wall_street');
+        
         Movie::create([
             'id'          => 1,
-            'title'       => "Schindler's List",
-            'image'       =>  "./schindlerslist.jpg",
-            'description' => "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.",
-            'director'    => "Steven Spielberg",
+            'title'       => json_decode((string)$firstMovie->getBody())->Title,
+            'image'       => json_decode((string)$firstMovie->getBody())->Poster,
+            'description' => json_decode((string)$firstMovie->getBody())->Plot,
+            'director'    => json_decode((string)$firstMovie->getBody())->Director,
         ]);
 
         Movie::create([
             'id'          => 2,
-            'title'       => "Birdman",
-            'image'       =>  "./birdman.jpg",
-            'description' => "A washed-up superhero actor attempts to revive his fading career by writing, directing, and starring in a Broadway production.",
-            'director'    => "Alejandro G. Iñárritu",
+            'title'       => json_decode((string)$secondMovie->getBody())->Title,
+            'image'       => json_decode((string)$secondMovie->getBody())->Poster,
+            'description' => json_decode((string)$secondMovie->getBody())->Plot,
+            'director'    => json_decode((string)$secondMovie->getBody())->Director,
         ]);
 
         Movie::create([
             'id'          => 3,
-            'title'       => "Interstellar",
-            'image'       =>  "./interstellar.jpg",
-            'description' => "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
-            'director'    => "Christopher Nolan",
+            'title'       => json_decode((string)$thirdMovie->getBody())->Title,
+            'image'       => json_decode((string)$thirdMovie->getBody())->Poster,
+            'description' => json_decode((string)$thirdMovie->getBody())->Plot,
+            'director'    => json_decode((string)$thirdMovie->getBody())->Director,
         ]);
-        
+
         Movie::create([
             'id'          => 4,
-            'title'       => "Titanic",
-            'image'       =>  "./titanic.jpg",
-            'description' => "A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.",
-            'director'    => "James Cameron",
+            'title'       => json_decode((string)$fourthMovie->getBody())->Title,
+            'image'       => json_decode((string)$fourthMovie->getBody())->Poster,
+            'description' => json_decode((string)$fourthMovie->getBody())->Plot,
+            'director'    => json_decode((string)$fourthMovie->getBody())->Director,
         ]);
     }
 }
