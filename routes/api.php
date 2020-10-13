@@ -29,7 +29,7 @@ Route::get('reviews', [ReviewController::class, 'index'])->name('reviews.index')
 Route::get('reviews/{movie}', [ReviewController::class, 'show'])->name('reviews.show')->middleware('auth:sanctum');
 Route::post('reviews/{movie}/rating', [ReviewController::class, 'storeRating'])->name('review.store.rating')->middleware('auth:sanctum');
 Route::post('reviews/{movie}/description', [ReviewController::class, 'storeDescription'])->name('review.store.description')->middleware('auth:sanctum');
-Route::delete('reviews/{movie}', [ReviewController::class, 'destroy'])->name('review.destroy');
+Route::delete('reviews/{movie}', [ReviewController::class, 'destroy'])->name('review.destroy')->middleware('auth:sanctum');
 
 Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth:sanctum');
