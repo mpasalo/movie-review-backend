@@ -21,7 +21,7 @@ class LoginController extends Controller
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
             return response()->json([
-                'message' => $e->getMessage()
+                'message' => $e->errors()
             ]);
         }
     
