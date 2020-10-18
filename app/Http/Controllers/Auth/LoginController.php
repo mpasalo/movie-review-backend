@@ -41,7 +41,6 @@ class LoginController extends Controller
     {
         $request->user()->tokens()->delete();
 
-        return response()->json(['m
-        ge' => 'user logged out']);
+        return response()->json(['message' => 'user logged out']);
     }
 }
